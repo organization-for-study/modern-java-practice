@@ -34,7 +34,7 @@ class ModernJavaPracticeApplicationTests {
     @Test
     @DisplayName("스트림을 사용한 순회")
     void stream_1() {
-        list.stream().forEach(
+        list.forEach(
                 (v) -> {
                     System.out.println("Hello" + v);
                 }
