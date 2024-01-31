@@ -18,10 +18,13 @@ class ModernJavaPracticeApplicationTests {
     void setUp() throws Exception {
         list = asList("1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m");
         crews = asList(
-                Crew.of("이은x", 30, "팀장"),
-                Crew.of("이예x", 30, "팀원"),
-                Crew.of("김현x", 27, "팀장"),
-                Crew.of("전다x", 29, "팀원")
+                Crew.of(1, "이은x", 30, "팀장"),
+                Crew.of(2, "이예x", 30, "팀원"),
+                Crew.of(3, "김현x", 27, "팀장"),
+                Crew.of(4, "전다x", 29, "팀원"),
+                Crew.of(5, "황X성", 29, "지원팀"),
+                Crew.of(6, "김민x", 29, "팀장"),
+                Crew.of(7, "이민x", 29, "팀원")
         );
     }
 
@@ -51,4 +54,31 @@ class ModernJavaPracticeApplicationTests {
                 );
     }
 
+    @Test
+    @DisplayName("동시성을 확인하는 프로그래밍")
+    void stream_3() {
+        //원래 출력 순서
+        crews.forEach(
+                (v) -> {
+                    if(v.getAge() < 31) {
+                        System.out.println(v);
+                    }
+                });
+
+        System.out.println("=====================================");
+
+        crews.parallelStream()
+                .filter(v -> v.getAge() < 31)
+                .forEach(
+                        System.out::println
+                );
+
+        System.out.println("=====================================");
+
+        crews.stream()
+                .filter(v -> v.getAge() < 31)
+                .forEach(
+                        System.out::println
+                );
+    }
 }
