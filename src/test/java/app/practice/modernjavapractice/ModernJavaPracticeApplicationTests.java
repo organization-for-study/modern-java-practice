@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 
@@ -60,7 +63,7 @@ class ModernJavaPracticeApplicationTests {
         //원래 출력 순서
         crews.forEach(
                 (v) -> {
-                    if(v.getAge() < 31) {
+                    if (v.getAge() < 31) {
                         System.out.println(v);
                     }
                 });
@@ -80,5 +83,21 @@ class ModernJavaPracticeApplicationTests {
                 .forEach(
                         System.out::println
                 );
+    }
+
+    @Test
+    @DisplayName("스트림을 사용한 순회3")
+    void stream_4() {
+        List<Map<String, String>> teamRoles = Arrays.asList(
+                Map.of("Alice", "Developer", "Bob", "Designer"),
+                Map.of("Charlie", "Manager", "Dave", "Analyst"),
+                Map.of("Eve", "Tester", "Frank", "Developer")
+        );
+
+        List<String> roles = teamRoles.stream()
+                .flatMap(map -> map.entrySet().stream())
+                .map(entry -> entry.getKey() + " is a " + entry.getValue())
+                .collect(Collectors.toList());
+        System.out.println(roles);
     }
 }
