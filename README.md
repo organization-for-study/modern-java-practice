@@ -11,9 +11,9 @@
 
 아래의 환경에서 작업하길 바랍니다.
 
-- JDK 17
-- IntelliJ IDEA ( Ultimate Edition )
-- Gradle 8.0 +
+- **JDK 17**
+- **IntelliJ IDEA** ( Ultimate Edition )
+- **Gradle** 8.0 +
 
 ----
 
@@ -31,23 +31,24 @@ public void parallelStreamLoop(List<String> list) {
     Time end = new Time(System.currentTimeMillis());
     System.out.println("소요시간: " + (end.getTime() - start.getTime()) + "ms");
 }
+```
+
+```java
 
 @Test
 void 여러건을_병렬적으로_반복할_수_있다() {
     private List<String> stringList = new LinkedList<>();
     for (int i = 0; i < 50000; i++)
         stringList.add("B" + new Random().nextInt());
-
     refactorClass.loop(stringList);
 }
 ```
 
 각 테스트의 단위는 설명의 목적이 될 수도 있고
 
-특정 기능의 실행 결과를 확인하는 목적이 될 수도 
+특정 기능의 실행 결과를 확인하는 목적이 될 수도
 
 혹은 문제를 제공하는 형태도 가능합니다.
-
 
 #문제를 제공하는 형태도 가능합니다.
 
@@ -55,9 +56,18 @@ void 여러건을_병렬적으로_반복할_수_있다() {
 @Test
 void 여러건을_병렬적으로_반복할_수_있다() {
     private List<String> stringList = 여러건의_데이터를_제공하는_메서드();
-    
     //이떄 병렬적으로 LIST를 DTO로 변환하는 코드를 작성해보세요
     // DTO의 형태는 test/ch05/parallelStreamLoop/DTO.java를 참고하세요
-    
+}
+
+@Test
+void 쓰레드를_생성해_병렬적으로_반복할_수_있다() {
+    private List<String> stringList = 여러건의_데이터를_제공하는_메서드();
+    //이떄 병렬적으로 LIST를 DTO로 변환하는 코드를 작성해보세요
+    // DTO의 형태는 test/ch05/parallelStreamLoop/DTO.java를 참고하세요
 }
 ```
+
+혹은 문제에 대해 본인이 이해한 내용을 설명하는 형태도 가능합니다.
+
+> 산출 코드는 본인의 이해를 바탕으로 하길 바라고 본인에게 도움되기 위해 작성한다 생각하고 작성하길 바랍니다.
